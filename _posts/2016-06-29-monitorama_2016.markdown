@@ -196,6 +196,7 @@ stimulates the performance of a next action, by the same or a different agent.
 
 ## Tackling Alert Fatigue - Caitie McCaffrey - @caitie
 - Distributed systems engineer @ Twitter
+- [Monitorama 2016 slides/references](https://github.com/CaitieM20/Monitorama2016)
 
 ### Alert Fatigue
 - When alerts are more often false than true, the on-calls sense of urgency
