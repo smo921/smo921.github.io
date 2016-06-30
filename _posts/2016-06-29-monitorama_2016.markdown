@@ -91,11 +91,11 @@ _Everything we know is wrong!!!  We are using legacy techniques on modern system
 
 ----
 
-## How Metrics Shape Your Culture - Nicole Forsgren - @nicolefv - http://nicolefv.com
+## How Metrics Shape Your Culture - Nicole Forsgren - @nicolefv - <http://nicolefv.com>
 - Director, Organizational Performance and Analytics, Chef
 - You can't improve what you don't measure
 - Always measure things that matter
-  - The Goal: A process of ongoing improvement by Eliyahu Goldratt and Jeff Cox
+  - [The Goal: A process of ongoing improvement by Eliyahu Goldratt and Jeff Cox](https://www.amazon.com/Goal-Process-Ongoing-Improvement-ebook/dp/B002LHRM2O/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=&sr=#nav-subnav)
 - That which is measured gets managed
 - In business, you are what you measure
 - If you capture only one metric, you know what will be gamed
@@ -111,7 +111,7 @@ _Everything we know is wrong!!!  We are using legacy techniques on modern system
 
 ----
 
-## Creating A Culture of Observability at Stripe - Cory Watson - @gphat - http://onemogin.com/
+## Creating A Culture of Observability at Stripe - Cory Watson - @gphat - <http://onemogin.com/>
 
 ### Starting Point
 - Some visibility, but not enough
