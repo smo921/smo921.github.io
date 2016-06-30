@@ -1,0 +1,827 @@
+# Day 1 - June 27
+
+## Monitoring Challenges - Adrian Cockcroft - @adrianco
+- Recap of 2014 Keynote - Monitoring "New Rules"
+  - More time analysing, reduce latency increase resolution (< 10s metric latency)
+  - Scaling the monitoring system ; Be more available than the systems/services being monitored
+- Monitoring: Measuring business value ; Problem detection and Diagnosis
+
+### Business value of monitoring
+- Customer happiness
+  - Time to value - Availability - Response Time
+- Cost efficiency
+  - Utilization - Optimization - Automation
+- Safety / Security / Compliance
+
+### Why isn't this a solved problem??
+- Changes in the ecosystem every decade or so
+- Hierarchy of infrastructure changes frequently
+- Cost per node drops by an order of magnitude.  How much are you willing to pay to monitor the "thing"
+  - Shorter lived instances + very low cost + more instances == New set of challenges
+
+### Tinkering
+- Micro services simulator written in Golang
+- [SPIGo: Simulate Protocol Interactions in Go / SimianViz](https://github.com/adrianco/spigo)
+- Modeling tool for simulating distributions
+  - For example: Response Time distribution
+  - Memcache vs MySQL cache vs MySQL disk read
+  - Metrics subsystem has been included in [GoKit](https://github.com/go-kit/kit)
+
+### Serverless
+- AWS Lambda, Google Cloud Functions, Azure Functions, IBM OpenWhisk, iron.io, serverless.com, apex.run
+- Monitorless Architecture
+  - No machines to run nagios/collectd on, no CPU/RAM/Disk
+  - Thing to monitor only exists briefly, and does not exist if not being used
+  - Serverless Programming Model
+    - Event driven functions
+    - Role based permissions
+    - Whitelisted API based security
+    - Good for simple single threaded code
+  - Work in progress
+    - Tooling for ease of use
+    - Multi-region HA/DR
+    - Debugging and testing frameworks
+    - Monitoring / end-to-end tracing
+    - Using AWS Lambda to monitor AWS
+
+### Wrap-up
+- Too much new stuff
+- Too ephemeral
+- Price distribution
+----
+## Monitoring is Dead. Long Live Monitoring - Greg Poirier
+- CTO @ [opsee.com](http://opsee.com)
+- @grepory
+
+### Historical view of monitoring
+- Watching individual system metrics (cpu, ram , disk, process, network/routing)
+- uptime, free, du, ps, ping
+- Small number of machines to manage
+- Resource constraints because of limited amount of machines
+- Thresholds and system states (green, orange, red)
+
+_Everything we know is wrong!!!  We are using legacy techniques on modern systems/application architectures_
+
+### What is Monitoring?
+- _Observability_ - A system is observable iff you can determine the behavior of the system based on its outputs
+- _System_ - A system is a set of connected components
+- _Behavior_ - The manner in which a system acts is its behavior
+- _Outputs_ - The outputs of a system are the concrete results of its behaviors
+- _Components_ -
+- _Sensors_ -  One or more sensors observe the state of a component
+- _Agent_ - An agent interprets data emitted by a sensor
+- _Monitoring_ - the action of observing and checking the behavior and outputs of a system and its components over time
+
+### Need to change!!
+- Learn/Think about distributed systems
+- Fault detection research
+  - The 'FLP result' paper
+  - Byzantine Generals Problem
+  - Respond too slowly / Fail to respond
+- Service Level Objectives
+- Better health checks
+- Monitoring is part of building software
+  - Start with failing monitors ; similar to how TDD is done
+  - TravisCI .monitor.yaml file??
+- Understand how systems behave
+  - What are the failure modes
+- Build better tools
+----
+## How Metrics Shape Your Culture - Nicole Forsgren - @nicolefv - http://nicolefv.com
+- Director, Organizational Performance and Analytics, Chef
+- You can't improve what you don't measure
+- Always measure things that matter
+  - The Goal: A process of ongoing improvement by Eliyahu Goldratt and Jeff Cox
+- That which is measured gets managed
+- In business, you are what you measure
+- If you capture only one metric, you know what will be gamed
+- Not everything that can be counted . . . COUNTS
+  - Sometimes it is better to measure half of the things if those are the important things
+- Metrics inform our incentives and shape our behavior
+- Just because something is hard to measure doesn't mean it isn't worth measuring
+- Westrum Organizational Culture
+  - Pathological (Power-oriented)
+  - Bureacratic (Rule-oriented)
+  - Generatvie (Performance-oriented)
+- [Data Driven - Creating a Data Culture](http://www.oreilly.com/data/free/data-driven.csp)
+----
+## Creating A Culture of Observability at Stripe - Cory Watson - @gphat - http://onemogin.com/
+
+### Starting Point
+- Some visibility, but not enough
+- No clear ownership
+- Lack of confidence, vision for future
+- Very reactive
+
+### Empathy and Respect
+- People are not evil, they are busy, stressed, and have deadlines/commitments
+- Being a hater is lazy
+- Make people be great at their jobs
+
+### Nemawashi
+- In Japanese means an informal process of quietly laying the foundation for some proposed
+change or project, by talking to the people concerned, gathering support and feedback,
+and so forth.
+- Start small, _quietly lay a foundation and gather feedback_
+- Ask how you can improve, and follow up
+- Engage discontent! Usually fine.  Sometimes you need whiskey
+- Identify Power Users
+- What is observability?  Why do we want it?
+- Stigmergy - Stigmergy is a mechanism of indirect coordination, through the environment,
+between agents or actions. The principle is that the trace left in the environment by an action
+stimulates the performance of a next action, by the same or a different agent.
+- Advertise
+  - Don't be afraid
+  - Promote team accomplishments
+  - Moreso, promote the accomplishments of others
+  - Humbly ask to help, then learn
+- Make it easy and good
+  - Harder than it sounds (email for example)
+  - Make it easy/automatic to do the things right and hard to do wrong
+  - Quality is important
+- Automated Monitors
+  - Baseline monitoring
+  - Common problems, common solutions
+  - Users have no state, are surprised
+  - People care when you show them failure and how to fix it
+- Alerts create ticket w/ context and links to investigate
+- Investigation dashboard
+  - Alert histogram in the past hours/days
+  - Links/notes on how to fix the problem
+- Feedback is requested in every interaction (ticket, dashboard, etc)
+- Training
+  - Teach the basics
+  - Company curriculum: Teach 'em early
+  - Measuring work metrics
+  - Metric types
+  - Schemas (dotted, tags, etc)
+  - Rates, histograms
+  - Visualizations
+- Ownership
+  - people/teams need to own what they produce
+----
+## healthz: Stop reverse engineering applications and start monitoring from the inside - Kelsey Hightower - @kelseyhightower
+- Stop reverse engineering applications and start monitoring from the inside
+- Ops needs to move closer to the application
+- Demo: [app-healthz](https://github.com/kelseyhightower/app-healthz)
+----
+## The Art of Performance Monitoring - Brian Smith
+- Facebook
+- Scribe
+  - [Scribe Announcement](https://www.facebook.com/notes/facebook-engineering/facebooks-scribe-technology-now-open-source/32008268919/) - Message bus
+  - [Scribe Github](https://github.com/facebookarchive/scribe)
+- [Cubism.js](http://square.github.io/cubism/)
+- Key components of a good alarm
+  - Signal
+  - Actionability
+    - When you get a notification can you do something about it
+  - Relevancy
+    - Increase the amount of information an alarm gives you
+- Your dashboards are a debugger
+- Have Specific Metrics
+- Minimize necessary attention
+- Use high level alarms
+----
+## Tackling Alert Fatigue - Caitie McCaffrey - @caitie
+- Distributed systems engineer @ Twitter
+
+### Alert Fatigue
+- When alerts are more often false than true, the on-calls sense of urgency
+in responding to alerts is diminished
+  - [Quote from a study on nursing and patient care](http://www.ncbi.nlm.nih.gov/pubmed/24365870)
+- The High cost of alert fatigue
+  - Unplanned work
+  - Inability to complete planned work
+  - Less time to focus on core business
+  - Fatigue + Fire-fighting == Burnout
+- Tacking alert fatigue in hospitals
+  - Increase thresholds for patient vitals
+  - Only Crisis Alarms would emit audible alerts
+  - Nursing staff required to tune false positive alerts
+
+### Defeating Alert Fatigue
+- Dedicated observability team @ twitter
+  - 2+ billion events ingested per minute
+  - Operated for all of engineering (including acquisitions like Periscope)
+- Runbook and Audit alerts
+  - Spent 2 weeks at the start of a quarter to do a full audit of every service
+  - Lots of tribal knowledge
+  - No standardization on runbook format
+  - "Nothing to surface hidden assumptions like writing runbooks"
+  - Runbook Template is on her github page
+    - Overview of the service (what/why)
+    - Link to alert definition in SCM
+    - Alert title / description
+    - Impact to Customers - if the customers aren't being affected maybe the alert can be deleted
+    - Remediation Steps
+      - Checklist that anyone can follow, if the alert cannot be remediated include escalation steps
+      - Do this, check this graph, do this thing, try this other thing, verify service has recovered
+- Empower the oncall
+  - Tune alert thresholds
+  - Disable or delete in-actionable alerts
+- Business Hours alerts
+  - If the service isn't in use during non-business hours, don't alert for it during non-business hours
+- Weekly On-Call retro
+  - Handoff on going issues
+  - Review alerts fired in the previous week
+  - Schedule work to improve on-call or reliability
+- "The goal is not to never get paged, the goal is to never get paged for the same thing twice" - Astrid Atkinson
+  - [Engineering for the Long Game](https://www.youtube.com/watch?v=p0jGmgIrf_M)
+
+### Results
+  - 50% Reduction of Alerts - In one quarter
+  - On-call slept through the night
+  - More time to do scheduled work while on-call
+  - Faster to ramp up new teammates
+  - Improved Visibility
+    - Could start looking at "alerts per service", instead of everything looks horrible
+    - Provides great insight in to where time/resources need to be invested
+
+### Lessons Learned
+- Critical alerts need to be actionable
+- Do not alert on machine specific metrics
+- Is the customer being impacted???
+- The tech lead or engineering manager should be on-call
+- Cultural change
+  - Move away from a culture of fire fighting and toward a culture of _prevention_
+- The goal is to build systems that can scale linearly with machines and sub-linearly with people
+- [Links/References](https://github.com/caitiem20/monitorama2016)
+----
+## Humanscale Systems - Mark Imbriaco - [Operable](https://operable.io/) - @markimbriaco
+- Its about the people
+- We have strong opinions
+- We sweat the details
+- We build tools
+- All software is horrible
+- Its not possible to know and remediate all of the failure conditions in software
+- [How Complex Systems Fail](http://web.mit.edu/2.75/resources/random/How%20Complex%20Systems%20Fail.pdf) - Dr Richard L Cook
+- "DevOps(n): The practice of spending countless hours appeasing automation tools
+because of a fear of shell scripts, SSH, and for loops"
+- Think about the interface and interactions of services/systems
+  - How can the api and interface be improved for when things break ; for the humans that will need
+  to fix it
+  - Think about the intent ; the problem you are likely to be solving ; the likely use cases
+  - Consistency matters
+  - Consider state of mind ; Given a risky remediation step warn the user or allow a dry-run mode
+----
+## Going for Brokerage: People Analytics at [Redfin](https://www.redfin.com/) - Sarah (Lake) Hagan
+- Behavioral psychology
+- Monitoring our Hiring
+  - Have agents in 80+ markets
+  - Monitor the external housing market data to determine what markets to expand into
+----
+## Everything @obfuscurity taught me about Monitoring - Pete Cheslock - @petecheslock
+- It's an amazing time to work in IT
+- [The First Fifteen Lives of Harry August](https://www.amazon.com/dp/B00ECE9OD4#nav-subnav)
+- [The Definitive Guide to Linux System Calls](http://blog.packagecloud.io/eng/2016/04/05/the-definitive-guide-to-linux-system-calls/)
+- Premature optimization is the root of all evil
+- Build consumable services
+- Community Matters ; Relationships Matter
+- You are (probably) not Google . . . and that is OK (Solve YOUR Problems)
+----
+# Day 2 - June 28
+
+## Scaling Pinterest’s Monitoring System - Brian Overstreet
+- Entirely run in AWS
+
+### Timeline
+- Early 2012 - Ganglia and up/down checks
+- April 2012 - approx 10 outages / day.
+- Early 2012 - graphite deployed to a single server
+- Applications send metrics via statsd to a single "Metrics Box" running (statsd-server, carbon-cache, graphite-web)
+- Early 2013 - Clustered graphite architecture
+  - haproxy load balanced between two carbon-relay's which send metrics to multiple carbon-caches
+- UDP Packet loss became a problem
+  - Option 1: Put StatsD everywhere
+  - Option 2: Sharded statsd
+- Mid 2013 - Multiple Graphite clusters (one for Python apps and one for Java apps)
+- Early 2014 - OpenTSDB deployed
+- Replaced Statsd Server (2015)
+  - Local metrics-agent
+    - Gatekeeper for time series data
+    - Interface for OpenTSDB and Statsd
+    - Sends metrics to Kafka
+    - Needed to convert to Kafka pipeline w/ no downtime
+  - Kafka
+  - storm
+- Current Write Throughput
+  - Graphite: 120k points / sec
+  - OpenTSDB: 1.5M points / sec
+
+### Follow up
+- Statsboard
+  - Integrates Graphite, Ganglia, OpenTSDB metrics
+  - Configured via yaml files
+- User Education
+  - Train users on the various tools, as they are not intuitive
+  - Graphite
+    - What are rrds and how to normalize across intervals
+    - Metric summarization into the next interval
+    - Getting req/sec from a timer
+    - Difference between stats or stats_counts
+  - OpenTSDB
+    - Getting data from continually incrementing counters
+    - Interpolation of data points
+    - How aggregation works
+    - Query optimization
+
+### What else was learned
+- Protect system from clients
+  - alert on unique metrics
+  - Block metrics using zookeeper
+- Trusting the data
+  - Need to measure data points lost
+  - Cannot control how users user the data
+  - Measuring data accuracy is hard
+- Lessen Aggregator Overhead
+  - Statsd performs network call to update a metric
+    - Manually tune sample rate to lessen overhead (time consuming)
+  - Java uses Ostrich library for in process aggregation
+- Lessen Operational Overhead
+  - More tools, more overhead
+  - Adding boxes to graphite is hard
+  - Adding boxes to OpenTSDB is easy
+  - More monitoring systems, more monitoring of the monitoring systems
+  - Removing a tool in production is hard
+  - As product gets more 9s so must the monitoring tools
+- Set User Expectations
+  - Data has a lifetime
+  - Not magical data warehouse tools that return data instantly
+  - Not all metrics will be efficient
+
+### Summary
+  - Match the monitoring system to where the company is at it
+  - User education is key to scale these tools organizationally
+  - Tools scale with the number of engineers not users of the site
+----
+## What Your Javascript Does When You're Not Around - Emily Nakashima
+- Frontend and Javascript @ [BugSnag](https://bugsnag.com/)
+- Web frameworks are allowing for more complex JS code to be deployed to production
+- Worse yet, it runs in the least monitored part of the environment.  The customers browser
+- Browser monitoring toolkit
+  - Performance
+    - Statsd + Grafana + Google Analytics
+    - Capture page load perf (Navigation Timing API) and ajax loading performance (User Timing API)
+  - Exceptions
+    - Capture uncaught JS exceptions in the browser
+- JS Exceptions
+  - Easy ones: moved some code and throwing new exceptions
+  - Slightly harder: Third party browser plugins causing exceptions.  Top priority is to silence the
+  exception alerting to reduce noise
+  - [Ghostery](https://www.ghostery.com/) - Visualize JS dependencies
+- JS Code can wander off and run in unexpected places
+  - Proxies - like google translate
+  - Don't write code that checks the domain to verify you are in production
+```
+  // Don't trust this:
+  in_production =
+    document.location.hostname === 'bugsnag.com'
+```
+- Keep an eye on developers playing in the console on your site - they create a lot of exceptions
+- Log events, not just errors
+- UX Monitoring: Refresh tracking
+  - When someone presses cmd-r to reload the page an event is logged
+  - Helps track down where people don't trust the UI or are having problems
+- Accessibility Monitoring
+  - For example: Track down images in the DOM that don't have an alt tag
+- More types of performance monitoring
+  - Memory leak monitoring - look at used JS heap size during each navigation event
+  - Geo locatoin
+  - Installed fonts
+  - Screen dimentions / color depth
+  - Browser language
+  - Battery level and charging status???
+  - Online/Offline status
+- The monitoring team doesn't know what the JS does
+  - Front end issues may not result in 500 errors or increases in page load times
+- For web apps to win, browser monitoring is required
+----
+[Cog](https://operable.io/) Demo:
+- https://github.com/operable/cog
+- Command line like bot w/ fine grained permissions
+- Write commands in any language
+- Composable commands, supports pipes
+- Open source apache license
+----
+## CHICKEN and WAFFLES: Identifying and Handling Malice - Eron Nicholson (Ops) and Noah Lorang (Data)
+- Basecamp, previously 37 Signals
+- The first rule of DDoS club is that you don't talk about getting attacked
+- March 24, 2014 - Small attack, ~80 Gb/sec
+  - DNS reflection
+  - NTP reflection
+  - SYN floods
+  - ICMP flood
+- Attack shifted between attack types as mitigation was enabled
+- Got serious about defense and mitigation as a result
+  - New multiple 10G circuits
+  - New routers to support circuits and enhance management tools
+  - Purchased attack mitigation services
+- Got serious about more subtle application level attacks
+  - Vulnerability scanners
+  - Repeated slow page requests
+  - Brute force login attempts
+  - Nefarious crawlers
+  - Evaluated commercial appliances and purchased one . . . however:
+    - Frustrated w/ performance and availability problems
+    - Strange SSL and connection issues
+- What did we actually want
+  - Protection against app-level attacks
+  - Allow actual customers to keep using the app
+  - Take advantage of all the data available (normal user behavior vs malicious)
+  - Transparent: should be very clear why an action was taken or why traffic was being filtered
+- Tried machine learning / classification but is quite difficult to classify bad ip's.
+- Also needed to be able to say _why_ an IP was blocked
+- Different approach
+  - Some behavior is not normal: path traversal, repeated failed logins, crawling for pages that
+  should not exist (phpMyAdmin, CKEditor, wp-admin, ...)
+  - Request history gives good indication of a normal user, broken script, or malicious
+  - External indicators (IP database lists, Facebook Threat Exchange)
+  - Caught 6k IPs that failed to exercise the slightest amount of creativity
+    - Bad path access, nonsense http verbs, repeated failed logins, etc
+  - Every incoming rquest is scored and a per-IP aggregate score is calculated
+    - Good request, you get a point.  Bad request, you lose some points
+  - Aggregate IP reputation score ranges from +1 to -infinity.
+- The tool (Chicken) has auto-blocked about 7k IPs w/ a <1% unblock rate
+- Scanning for blockable actions and scoring happen in near realy time
+  - Request logs, Netflow data, thread exchange goes into Kafka
+  - Request scorer, scanner for known bad behavior, wide assortment of tools for manual evaluation
+  consume data from Kafka
+- Tooling created for incident response and everyday use
+- Chicken provides Waffles with four things
+  - List of IPs that should be blocked
+  - List of IPs that should be trusted
+  - List of IP's they are unsure of
+- Chicken is the brains of the operation and Waffles is the brawn
+
+```
+-------------------------------------------------------------------------------------------------------------
+| Requirements  | iptables rule on | Rule on loadbalancer |  Null route on router  |       Waffles          |
+|               |   haproxy hosts  |                      |                        |                        |
+|---------------|------------------|----------------------|------------------------|------------------------|
+|   Actions     |     Block        | Block, rate limit    | Block, bandwidth limit |     Trust block,       |
+|               |                  |                      |                        | untrusted, unknown IP's|                        |
+|  Automation   |      None        |         API          | API, automatic blocks  |                        |
+|               |                  |                      |     (via chiken)       | API, automatic blocks  |
+|               |                  |                      |                        |                        |
+|  Scalability  |  CPU intensive   |    CPU intensive     |            -           |  Scales horizontally   |
+|               |                  |                      |                        |                        |
+| Blocking unit |        IP        | IP, user-agent, path |          IP            |  IP, user-agent, path  |
+|               |                  |                      |                        |                        |
+|    Customer   |    No response   |     No response      |       No response      |   Friendly error page  |
+|   experience  |                  |                      |                        |                        |
+-------------------------------------------------------------------------------------------------------------
+```
+
+- Waffles hosts runs Redis and Nginx
+- Redis contains blocked and trusted list
+- Nginx
+  - Terminates SSL
+  - Checkes for presense of IP in blocked/trusted list using lua-resty-redis
+  - If blocked it serves the error page
+----
+## Fake it Til You Make It - John Stanford - @jxstanford - [Solinea](http://solinea.com/)
+- Works w/ OpenStack, Kubernetes, and supporting OSS tools / solutions
+- The environment
+  - OpenStack cloud, 1 controller, 6 compute nodes
+  - Used for training classes and R&D
+  - Ships logs/data via [Heka](https://github.com/mozilla-services/heka)
+- The question: Can this thing scale up and be supportable. For ex: When a large customer needs consulting help
+- 7 Days of data
+  - 21-31k messages per hour
+  - Obvious pattern
+  - 96% of messages from one node (the controller)
+  - Message Rate analysis - recurrent outlier in the data, throwing that out we can graph the message rates
+    - Controllers are 100x noisier than compute
+    - Swift generates 60% of the traffic
+    - 99.9% of the time there were < 65 messages/sec
+    - Some traffic spikes of 1600 messages / sec
+  - Message Size analysis - graph that as well
+    - 95% of messages < 240 bytes
+- Used [heka-flood](https://godoc.org/github.com/mozilla-services/heka/cmd/heka-flood)
+to find performance bottleneck in producer(s) -> consumer -> elasticsearch architecture
+  - Not enough control over message content
+  - Timestamp assigned at initialization (PR coming soon)
+  - Couldn't get variable message sizes working
+- Results
+  - Tactical
+    - System sustained 4k x ~1k msgs / sec
+    - Collector and/or ES started to pause above that
+    - No messages were dropped
+  - Strategic
+    - Load tool was underqualified
+    - Monitoring tool resolution is important for interpretation
+- Next Steps
+  - Find the bottlenecks (system resources, ES, collector, load generator)
+  - Improve the model (Probability distributions, noise, real messages samples, off host load, regime changes)
+  - Real world feedback
+----
+## Database Monitoring at Dropbox - Tammy Butow - @tammybutow - SRE Manager, Databases, Storage Team
+- [Inside the Magic Pocket](https://blogs.dropbox.com/tech/2016/05/inside-the-magic-pocket/)
+- [Magic Pocket Infrastructure](https://blogs.dropbox.com/tech/2016/03/magic-pocket-infrastructure/)
+- Moved from AWS/S3 to their own physical HW
+- Monitoring tools used: Nagios, Thruk, Ganglia
+- Internal monitoring tool: Vortex
+  - Custom TSDB, integrated dashboard, and alerting (email/paging)
+  - Write-side aggregation using hierarchical tags at the metro, cluster, and machine level
+- Monthra - simple interface for getting 3rd party metrics into Vortex
+- Monitoring thousands of MySQL instances
+- DB monitoring is reactive and proactive
+  - Proactive: Spike in MySQL workload
+  - Reactive: Database is running hot, go figure out why
+- System level metrics: cpu, ram, network, disk i/o, disk space
+- Service metrics
+  - Important to think about
+    - What are you durability/reliability goals?
+    - How do you want to interact w/ your metrics (daily/weekly/yearly)
+    - How do you align your monitoring to your goals?
+  - Example metrics
+    - Threads running / threads connected
+    - InnoDB buffer pool reads / read requests
+- Workload Monitoring
+  - Number of queries fired (inserts, selects, etc)
+  - Type of queries
+  - Top queries
+  - How many transactions
+  - TCP profiling
+- Replication
+  - Semi-sync replication
+  - Monitor binlog metrics
+- Daily KPI emails for DB and Infra teams
+- Monthly Metrics Review
+- Hardware Checker
+  - Internal tool that checks hardware
+  - WebUI and API
+  - Dashboards and alerting
+  - Automated workflows
+- No server hugging
+  - auto_replace.py
+  - automatically replace machines and monitor the replacement tooling
+- DR recovery testing
+  - Testing Tools: Chaos Monkey, Chaos Kong
+  - Testing Methods: GameDays, DiRTs
+- The Future
+  - On-call shouldn't have to figure out what metric is spiking
+  - Smart monitoring to see when patters are emerging
+----
+## 5 Lines I Couldn't Draw - Dave Josephsen - Librato - @davejosephsen
+- Don't remain stuck in a rut
+- Take your arcane cron job based email notifications, and graph message rate.  Maybe the line on the
+graph can lead to insight.  At the very least you now have a signal that you can analyze
+- Carrying a misapprehension about __what monitoring was__ and whom it was for
+- Monitoring is not __FOR__ alerting
+- Monitoring is a tape measure.  Monitoring is __FOR__ asking questions.  Measuring things is
+everyones job
+- What if i told you: You might be fascinated w/ anomaly detection because your input signal sucks
+- Complexity isolates
+  - Work to reduce complexity instead of accepting it
+- [Cynefin](https://en.wikipedia.org/wiki/Cynefin_Framework)
+- Monitoring tools can be used to bridge between teams/people with different needs/wants
+----
+## Everything is Broken - Jessie Frazelle
+- TLS & Zookeeper
+  - TLS + Zookeeper = Pipe Dream
+  - Merged into the 3.5.1 release but it is still in alpha
+  - Option #1: Running custom patched Zookeeper
+  - Option #2: Running in an alpha version
+- Dependencies
+  - Stop!!!
+  - "You don't download, or import, a software dependency, you adopt it. Like adopting pets, it's a
+  responsibility for the life of your product" - Dave Cheney @davecheney
+- _Learn to admit when you are wrong_
+- Monitoring your OSS Project
+  - [Vossibility](https://github.com/icecrime/vossibility-stack)
+----
+## Metrics are for Chumps - Understanding and overcoming the roadblocks to implementing instrumentation - James Fryman - [Auth0](https://auth0.com/) - @jfryman
+- Mission: To enable Operations staff to sleep
+- Needed to scale from 500 req/s to 3500 req/s, in two weeks
+- Recon
+  - Has this been tried before?  Talk to the players involved in the last attempt
+  - Metrics implementatoin tried at one point in the past (using Librato)
+  - Was removed because it was not well understood and thought to cause latency
+- Make the case: Buy in is no joke
+- Maslow's Hierarchy of Needs
+  - [Devops Hierarchy of Needs](http://www.forest-technologies.co.uk/blog/devops-hierarchy-of-needs)
+  - [Hierarchy of Devops Needs - Kickstarter](https://www.kickstarter.com/backing-and-hacking/hierarchy-of-devops-needs)
+  - http://cdn2.hubspot.net/hub/436937/hubfs/images/Picture5.png?t=1467125717394&width=1280
+- Common excuses
+  - Not the most important project
+  - Cannot start until we understand the data retention requirements
+    - Premature Optimization
+  - We don't run a SaaS, we don't need all those fancy DevOps tools
+  - We've made good decisions up to this point
+    - Make decisions based on knowledge, not intuition or luck
+- Align Incentives
+  - IT: Decrease MTTR, Find Bottlenecks, Understand seasonality for capacity planning
+  - Business: Track new feature usage, Track response time/page loading/engagement,
+  Drive cost per unit (transaction, request, etc)
+- Be Opportunistic - Success is often 90% planning, 10% timing + luck
+- Find opportunities where accelerating the efforts associated with implementing
+key components is moved up
+- Ultimately went with a SaaS solution
+  - Cost of solutions was "off-putting"
+  - Compromise: build commong tooling and use standard interfaces, migrate to OSS/Managed
+  - Instrumentation: Datadog
+  - Monitoring: Datadog / Homegrown Tool
+  - Logging: Kinesis -> Kibana
+  - Exception Handling: Sentry
+- Where things can still go wrong
+  - Keep in sync w/ developers - Change is difficult, and even with the most well-intention folks,
+  you will encounter resistance.  Pay attention to feedback during this stage
+  - What we have is _Good Enough_.  Need telemetry to narrow down events or systems.
+  - No support to interpret data.  Help get the measurement points into the code, and how to create
+  visualizations and use the tools
+- Understand where to measure
+  - Draw out the data flow and interactions
+  - Find chokepoints: (Nginx, LB, external services, databases, etc)
+  - Put measurements on those points
+  - Take a baseline measurement
+  - Isolate each component, test individually, and find bottlenecks
+- Summary
+  - Instrument early, instrument often
+  - Align Incentives
+  - Jump in, feet first, and iterate
+    - Plan, Do, Check, Act
+  - Listen
+  - Leave things better off than you found it
+----
+# Day 3 - June 29
+
+## Intuition Engineering at Netflix - Justin Reynolds - Netflix
+- History of Netflix move into AWS
+  - Started w/ silo'd regions
+  - Now running in multiple regions and customers can be served from any region
+  - Run very lean and scale up/down as necessary
+- Determining if a region is ready to receive more users is not an easy problem
+  - Traditional visualizations don't answer this questions
+  - Lots of metrics, too many to get a good gut feeling on the readiness of a region
+- Explored different options to make readiness an easier question to answer
+- [Vizceral](https://github.com/Netflix/vizceral) - App for visualizing traffic from the internet going into each region
+  - Animated traffic graphs
+  - Zoom into a region to see service relationships and traffic patterns
+  - Zoom into a node to see further information, provide traditional metric visualizations
+  - Zoom into a service to see its dependencies and traffic flow
+- How was it built
+  - Looked at D3, but it was difficult, focuses on traditional graphs
+  - WebGL
+  - [three.js](http://threejs.org/)
+  - [node.js](https://nodejs.org/en/)
+  - Salp - Request tracing based off [Google's Dapper whitepaper](http://research.google.com/pubs/pub36356.html)
+  - [Atlas](https://github.com/Netflix/atlas) - Netflix metrics tool
+- [Netflix Flux blog post](http://techblog.netflix.com/2015/10/flux-new-approach-to-system-intuition.html)
+----
+## Prometheus - Brian Brazil - [Robust Perception](http://www.robustperception.io/)
+- What is Prometheus
+  - Metrics based TSDB, designed for whitebox monitoring
+  - Supports labels (dimensions/tags) - Key/Value pairs
+  - Alerting and graphing are unified, using the same language
+- History
+  - Inspired by Google's Borgmon monitoring system
+  - Started in 2012 by ex-Googlers working in Soundcloud, mainly written in Go
+  - 50+ 3rd party integrations
+- Architecture
+  - Pull based system based on service discovery
+  - Read from AWS, Azure, Kubernetes, Marathon, consul, zookeeper, . . . . and JSON
+  - Talk to Cadvisor, Cassandra w/ JMX exporter, and a push-gateway for batch jobs
+  - Alertmanager triggered based on Rules.
+  - Visualization of graphs using Grafana
+- Instrumentation made easy
+  - Example of how to add a metric to a python app
+- Open Ecosystem - client libraries don't tie you into Prometheus
+  - Can push into Graphite for example
+- Labels - doesn't use dotted strings
+  - ```metric{conference="monitorama",city="portland"}```
+- Great for metrics aggregation
+```topk(5,
+    sum by (image)(
+      rate(container_cpu_usage_seconds_total{
+      id=/~foobar/
+      })
+    ))
+```
+- Supports alerting using a similiar syntax
+- Monitor as a service, not as servers
+- Efficient
+  - Single server can handle 800K samples/s
+  - Node exporter produces ~700 time series, so even w/ a 10s scrape interval a single
+  Prometheus can handle over 10k machines
+  - [Facebook Gorilla Paper](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf)
+- Decentralised
+  - Pull based so it can run on a workstation for testing and rogue servers can't push bad metrics
+  - Each team can run their own Prometheus, no need for central management
+- Reliable
+  - No external dependencies and no complex CP clustering to go wrong
+  - For HA it is kept simple
+- [Prometheus.io](http://prometheus.io)
+- [Robust Perception Blog](http://www.robustperception.io/blog)
+- [Demo](http://demo.robustperception.io/)
+----
+## Grafana Master Class - Torkel Ödegaard - @torkelo
+- Time series visualization
+- Data Sources - Graphite, InfluxDB, ElasticSearch, . . .
+- Snapshots, let you save the view forever instead of using screen capture to save images
+- New Features
+  - Logorithmic scales
+  - Fill-below to
+  - Time range overrides - per graph time ranges can be set
+- Templates allows generic graphs to be made and reused
+  - Supports setting time intervals for a panel as well
+  - Data Source variable type lets template variables be used for data sources
+- Mixed data sources allows querying multiple data sets and show them on the same graph
+- Dashboards and plugins can be shared on [Grafana.net](http://grafana.net/)
+- New feature allows data source to push data to grafana instead of grafana querying a datasource
+  - The [Snap](https://github.com/intelsdi-x/snap) project supports this
+- Alerting feature should be released soon
+----
+## How to Teach an Old Monitoring System New Tricks - Katherine Daniels - @beerops
+- Deploy nagios to production using [Deployinator](https://github.com/etsy/deployinator)
+- Searches chef for nodes and updates nagios configuration files
+- Stopped adding/removing hosts via chef runs and moved that into deployinator
+  - Prevents adding hosts to nagios before they are ready
+  - Hosts are added into nagios and placed in downtime until noon the next day
+  - New hosts are also announced in an irc room, and reminded when hosts will expire from downtime
+- Making alerts marginally less annoying
+  - [nagdash](https://github.com/lozzd/Nagdash) - Aggregates multiple instances
+  - [nagios-herald](https://github.com/etsy/nagios-herald) - Add context to notifications
+    - Support for custom formatters, messages, and helpers
+- [OpsWeekly](https://github.com/etsy/opsweekly)
+  - On call status report
+- Bed-time story - Sends email to oncall letting them know what hosts are coming out of downtime
+in the next 24 hours so they can take action
+----
+## All of Your Network Monitoring is (probably) Wrong - Joe Damato - packagecloud.io - @joedamato
+- [PackageCloud Blog](blog.packagecloud.io)
+- Claim: The more complex a system is the harder it is to monitor
+- http://bit.ly/linux-networking
+- https://baremetrics.com/calculator
+----
+## Building Twitter’s Next-Gen Alerting System - Megan Kanne, Justin Nguyen, and Dan Sotolongo
+----
+## Monitoring and Health at Airbnb - Joey Parsons
+----
+## Statistics for Engineers - Heinrich Hartmann - [Circonus](http://www.circonus.com/)
+- _Great talk, definitely watch the recording_
+- Histograms are better than median/mean or percentile Metrics
+- Bar/Point charts are better than line graphs.  The lines imply continuity between measurements
+- Line graphs are down-sampled over longer time periods, which can hide problems due to the data
+being averaged (ie down-sampled)
+- [Circonus Blog](http://www.circonus.com/blog/)
+----
+## Monarch, Google’s Planet-Scale Monitoring Infrastructure - John Banning - [Google](https://www.google.com/)
+
+### Background
+- Monitoring at Google
+  - Global span, Huge Volume, Many kinds
+    - HW/Networking/OS
+    - Infrastructure
+    - Big, user-facing services
+    - Small services
+  - Many teams
+  - Constant Change
+- Before Monarch there was Borgmon
+  - Each group
+    - Ran their own instance(s)
+    - Dealt with configuring
+    - Setup distributed monitoring
+  - Large load on anyone doing monitoring
+- Wanted: A monitoring service that can handle scale, with small/no load to get up and running, but capable
+  of handling the largest services
+
+### Monitor Locally
+- Divide infrastructure into multiple zones
+- Deploy semi-autonomous monitoring solution into each zones
+- Monitoring starts w/ injestion. The internal _streamz_ library defines the classes of metrics to be monitored,
+and pushes the measurements to Monarch
+- Metrics have a description.  The metric name, and key/value pairs of the actual measurements
+- Ingestion router takes metrics from streamz
+  - Sends metrics to the places they should go, called a _Leaf_
+- Leafs have an in memory TSDB, and write the data out to a _recovery log_
+- Recovery logs are also written out to a long term repository
+- Queries come in from outside the monarch zones
+  - Zone mixer determines which Leaf the request should go to
+  - The zone mixer collects all the results and returns the response to the query
+  - Queries can also come from automated tasks, to aggregate or manipulate metrics and store them
+  back in the local leaf(s)
+
+### Global Monarch
+- Logically centralized but globally distributed
+- One place to configure and make query requests for the user
+- Configuration send to the _Config Server_ which then sends the configuration to the appropriate zone
+  - Includes information such as data retention and polling intervals
+
+### Queries
+- Uses pipes to link together steps
+```
+table 'BorgTask' :: '/http/server/response_latency' | filter user = 'gmail' |
+group_by [job, cell], .percentile(95) | for 12h
+```
+- Query goes to the _Root Mixer_ which sends it to the _Zone Mixer_ which requests data from _Leaf(s)_
+which will fetch data from in memory or from the repo.  The Data is then Aligned, Aggregated, and the
+percentile is computed
+
+----
+## Other Reading and References
+
+1. [Percentages Aren't People](http://www.circonus.com/percentages-arent-people/)
+1. [Democratize Metrics](https://blog.raintank.io/democratize-metrics-sounds-interesting-but-what-does-it-mean/)
+1. [Grafana Community Dashboards and Plugins](https://grafana.net/)
+1. [Snap Telemetry Framework](https://github.com/intelsdi-x/snap)
