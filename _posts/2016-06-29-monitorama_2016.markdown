@@ -48,7 +48,9 @@
 - Too much new stuff
 - Too ephemeral
 - Price distribution
+
 ----
+
 ## Monitoring is Dead. Long Live Monitoring - Greg Poirier
 - CTO @ [opsee.com](http://opsee.com)
 - @grepory
@@ -86,7 +88,9 @@ _Everything we know is wrong!!!  We are using legacy techniques on modern system
 - Understand how systems behave
   - What are the failure modes
 - Build better tools
+
 ----
+
 ## How Metrics Shape Your Culture - Nicole Forsgren - @nicolefv - http://nicolefv.com
 - Director, Organizational Performance and Analytics, Chef
 - You can't improve what you don't measure
@@ -104,7 +108,9 @@ _Everything we know is wrong!!!  We are using legacy techniques on modern system
   - Bureacratic (Rule-oriented)
   - Generatvie (Performance-oriented)
 - [Data Driven - Creating a Data Culture](http://www.oreilly.com/data/free/data-driven.csp)
+
 ----
+
 ## Creating A Culture of Observability at Stripe - Cory Watson - @gphat - http://onemogin.com/
 
 ### Starting Point
@@ -159,12 +165,16 @@ stimulates the performance of a next action, by the same or a different agent.
   - Visualizations
 - Ownership
   - people/teams need to own what they produce
+
 ----
+
 ## healthz: Stop reverse engineering applications and start monitoring from the inside - Kelsey Hightower - @kelseyhightower
 - Stop reverse engineering applications and start monitoring from the inside
 - Ops needs to move closer to the application
 - Demo: [app-healthz](https://github.com/kelseyhightower/app-healthz)
+
 ----
+
 ## The Art of Performance Monitoring - Brian Smith
 - Facebook
 - Scribe
@@ -181,7 +191,9 @@ stimulates the performance of a next action, by the same or a different agent.
 - Have Specific Metrics
 - Minimize necessary attention
 - Use high level alarms
+
 ----
+
 ## Tackling Alert Fatigue - Caitie McCaffrey - @caitie
 - Distributed systems engineer @ Twitter
 
@@ -246,7 +258,9 @@ in responding to alerts is diminished
   - Move away from a culture of fire fighting and toward a culture of _prevention_
 - The goal is to build systems that can scale linearly with machines and sub-linearly with people
 - [Links/References](https://github.com/caitiem20/monitorama2016)
+
 ----
+
 ## Humanscale Systems - Mark Imbriaco - [Operable](https://operable.io/) - @markimbriaco
 - Its about the people
 - We have strong opinions
@@ -263,13 +277,17 @@ because of a fear of shell scripts, SSH, and for loops"
   - Think about the intent ; the problem you are likely to be solving ; the likely use cases
   - Consistency matters
   - Consider state of mind ; Given a risky remediation step warn the user or allow a dry-run mode
+
 ----
+
 ## Going for Brokerage: People Analytics at [Redfin](https://www.redfin.com/) - Sarah (Lake) Hagan
 - Behavioral psychology
 - Monitoring our Hiring
   - Have agents in 80+ markets
   - Monitor the external housing market data to determine what markets to expand into
+
 ----
+
 ## Everything @obfuscurity taught me about Monitoring - Pete Cheslock - @petecheslock
 - It's an amazing time to work in IT
 - [The First Fifteen Lives of Harry August](https://www.amazon.com/dp/B00ECE9OD4#nav-subnav)
@@ -278,7 +296,9 @@ because of a fear of shell scripts, SSH, and for loops"
 - Build consumable services
 - Community Matters ; Relationships Matter
 - You are (probably) not Google . . . and that is OK (Solve YOUR Problems)
+
 ----
+
 # Day 2 - June 28
 
 ## Scaling Pinterest’s Monitoring System - Brian Overstreet
@@ -353,7 +373,9 @@ because of a fear of shell scripts, SSH, and for loops"
   - Match the monitoring system to where the company is at it
   - User education is key to scale these tools organizationally
   - Tools scale with the number of engineers not users of the site
+
 ----
+
 ## What Your Javascript Does When You're Not Around - Emily Nakashima
 - Frontend and Javascript @ [BugSnag](https://bugsnag.com/)
 - Web frameworks are allowing for more complex JS code to be deployed to production
@@ -395,14 +417,18 @@ because of a fear of shell scripts, SSH, and for loops"
 - The monitoring team doesn't know what the JS does
   - Front end issues may not result in 500 errors or increases in page load times
 - For web apps to win, browser monitoring is required
+
 ----
-[Cog](https://operable.io/) Demo:
+
+## [Cog](https://operable.io/) Demo:
 - https://github.com/operable/cog
 - Command line like bot w/ fine grained permissions
 - Write commands in any language
 - Composable commands, supports pipes
 - Open source apache license
+
 ----
+
 ## CHICKEN and WAFFLES: Identifying and Handling Malice - Eron Nicholson (Ops) and Noah Lorang (Data)
 - Basecamp, previously 37 Signals
 - The first rule of DDoS club is that you don't talk about getting attacked
@@ -478,7 +504,9 @@ because of a fear of shell scripts, SSH, and for loops"
   - Terminates SSL
   - Checkes for presense of IP in blocked/trusted list using lua-resty-redis
   - If blocked it serves the error page
+
 ----
+
 ## Fake it Til You Make It - John Stanford - @jxstanford - [Solinea](http://solinea.com/)
 - Works w/ OpenStack, Kubernetes, and supporting OSS tools / solutions
 - The environment
@@ -514,7 +542,9 @@ to find performance bottleneck in producer(s) -> consumer -> elasticsearch archi
   - Find the bottlenecks (system resources, ES, collector, load generator)
   - Improve the model (Probability distributions, noise, real messages samples, off host load, regime changes)
   - Real world feedback
+
 ----
+
 ## Database Monitoring at Dropbox - Tammy Butow - @tammybutow - SRE Manager, Databases, Storage Team
 - [Inside the Magic Pocket](https://blogs.dropbox.com/tech/2016/05/inside-the-magic-pocket/)
 - [Magic Pocket Infrastructure](https://blogs.dropbox.com/tech/2016/03/magic-pocket-infrastructure/)
@@ -562,7 +592,9 @@ to find performance bottleneck in producer(s) -> consumer -> elasticsearch archi
 - The Future
   - On-call shouldn't have to figure out what metric is spiking
   - Smart monitoring to see when patters are emerging
+
 ----
+
 ## 5 Lines I Couldn't Draw - Dave Josephsen - Librato - @davejosephsen
 - Don't remain stuck in a rut
 - Take your arcane cron job based email notifications, and graph message rate.  Maybe the line on the
@@ -576,7 +608,9 @@ everyones job
   - Work to reduce complexity instead of accepting it
 - [Cynefin](https://en.wikipedia.org/wiki/Cynefin_Framework)
 - Monitoring tools can be used to bridge between teams/people with different needs/wants
+
 ----
+
 ## Everything is Broken - Jessie Frazelle
 - TLS & Zookeeper
   - TLS + Zookeeper = Pipe Dream
@@ -590,7 +624,9 @@ everyones job
 - _Learn to admit when you are wrong_
 - Monitoring your OSS Project
   - [Vossibility](https://github.com/icecrime/vossibility-stack)
+
 ----
+
 ## Metrics are for Chumps - Understanding and overcoming the roadblocks to implementing instrumentation - James Fryman - [Auth0](https://auth0.com/) - @jfryman
 - Mission: To enable Operations staff to sleep
 - Needed to scale from 500 req/s to 3500 req/s, in two weeks
@@ -643,7 +679,9 @@ key components is moved up
     - Plan, Do, Check, Act
   - Listen
   - Leave things better off than you found it
+
 ----
+
 # Day 3 - June 29
 
 ## Intuition Engineering at Netflix - Justin Reynolds - Netflix
@@ -668,7 +706,9 @@ key components is moved up
   - Salp - Request tracing based off [Google's Dapper whitepaper](http://research.google.com/pubs/pub36356.html)
   - [Atlas](https://github.com/Netflix/atlas) - Netflix metrics tool
 - [Netflix Flux blog post](http://techblog.netflix.com/2015/10/flux-new-approach-to-system-intuition.html)
+
 ----
+
 ## Prometheus - Brian Brazil - [Robust Perception](http://www.robustperception.io/)
 - What is Prometheus
   - Metrics based TSDB, designed for whitebox monitoring
@@ -714,7 +754,9 @@ key components is moved up
 - [Prometheus.io](http://prometheus.io)
 - [Robust Perception Blog](http://www.robustperception.io/blog)
 - [Demo](http://demo.robustperception.io/)
+
 ----
+
 ## Grafana Master Class - Torkel Ödegaard - @torkelo
 - Time series visualization
 - Data Sources - Graphite, InfluxDB, ElasticSearch, . . .
@@ -731,7 +773,9 @@ key components is moved up
 - New feature allows data source to push data to grafana instead of grafana querying a datasource
   - The [Snap](https://github.com/intelsdi-x/snap) project supports this
 - Alerting feature should be released soon
+
 ----
+
 ## How to Teach an Old Monitoring System New Tricks - Katherine Daniels - @beerops
 - Deploy nagios to production using [Deployinator](https://github.com/etsy/deployinator)
 - Searches chef for nodes and updates nagios configuration files
@@ -747,17 +791,25 @@ key components is moved up
   - On call status report
 - Bed-time story - Sends email to oncall letting them know what hosts are coming out of downtime
 in the next 24 hours so they can take action
+
 ----
+
 ## All of Your Network Monitoring is (probably) Wrong - Joe Damato - packagecloud.io - @joedamato
 - [PackageCloud Blog](blog.packagecloud.io)
 - Claim: The more complex a system is the harder it is to monitor
 - http://bit.ly/linux-networking
 - https://baremetrics.com/calculator
+
 ----
+
 ## Building Twitter’s Next-Gen Alerting System - Megan Kanne, Justin Nguyen, and Dan Sotolongo
+
 ----
+
 ## Monitoring and Health at Airbnb - Joey Parsons
+
 ----
+
 ## Statistics for Engineers - Heinrich Hartmann - [Circonus](http://www.circonus.com/)
 - _Great talk, definitely watch the recording_
 - Histograms are better than median/mean or percentile Metrics
@@ -765,7 +817,9 @@ in the next 24 hours so they can take action
 - Line graphs are down-sampled over longer time periods, which can hide problems due to the data
 being averaged (ie down-sampled)
 - [Circonus Blog](http://www.circonus.com/blog/)
+
 ----
+
 ## Monarch, Google’s Planet-Scale Monitoring Infrastructure - John Banning - [Google](https://www.google.com/)
 
 ### Background
@@ -817,6 +871,7 @@ group_by [job, cell], .percentile(95) | for 12h
 - Query goes to the _Root Mixer_ which sends it to the _Zone Mixer_ which requests data from _Leaf(s)_
 which will fetch data from in memory or from the repo.  The Data is then Aligned, Aggregated, and the
 percentile is computed
+
 
 ----
 ## Other Reading and References
